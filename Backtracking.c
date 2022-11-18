@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define size 6
     
-int K = 52; // 목표한 숫자
+int K = 52; // 목표한 숫자 
 int w[size] = {2, 10, 13, 17, 22, 42};
 char include[size]; // w 집합의 원소 중 경로에 포함되는 지 표시('y' or 'n')
 void printSubset(){
