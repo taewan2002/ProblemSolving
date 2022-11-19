@@ -20,13 +20,10 @@ void dfs(int depth, int n, int m, int *check, int *result){
     }
 }
 
-
 int main(){
     int n, m;
     int *check = (int*)malloc(sizeof(int)*n);
     int *total_list = (int*)malloc(sizeof(int)*m);
-    
     scanf("%d %d", &n, &m);
-
     dfs(0, n, m, check, total_list);
 }
