@@ -5,18 +5,15 @@
 using namespace std;
 
 long long A, B, C;
-long long multiply(int n)
-{
+long long multiply(int n){
     long long left, right;
     if (n == 1) return A % C;
     else if (n == 2) return ((A%C) * (A%C)) % C;
-    if (n % 2)
-    {
+    if (n % 2){
         left = multiply(n / 2);
         right = multiply(n / 2 + 1);
     }
-    else
-    {
+    else{
         left = multiply(n / 2);
         right = multiply(n / 2);
     }
