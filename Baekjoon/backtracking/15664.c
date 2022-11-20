@@ -1,6 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int check_upperbound(int *result, int m){
+    for(int i=0; i<m-1; i++){
+        if(result[i] > result[i+1]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 void sort(int *result, int m){
     for(int i=0; i<m-1; i++){
         for(int j=i+1; j<m; j++){
@@ -15,10 +24,12 @@ void sort(int *result, int m){
 
 void dfs(int depth, int n, int m, int last, int *check, int *num_list, int *result){
     if(depth == m){
-        for(int i=0; i<m; i++){
-            printf("%d ", result[i]);
+        if(check_upperbound(result, m)){
+            for(int i=0; i<m; i++){
+                printf("%d ", result[i]);
+            }
+            printf("\n");
         }
-        printf("\n");
     }
     else{
         last = 0;

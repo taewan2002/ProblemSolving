@@ -13,7 +13,7 @@ void sort(int *result, int m){
     }
 }
 
-void dfs(int depth, int n, int m, int last, int *check, int *num_list, int *result){
+void dfs(int depth, int n, int m, int last, int *num_list, int *result){
     if(depth == m){
         for(int i=0; i<m; i++){
             printf("%d ", result[i]);
@@ -23,12 +23,10 @@ void dfs(int depth, int n, int m, int last, int *check, int *num_list, int *resu
     else{
         last = 0;
         for (int i = 0; i < n; i++){
-            if (check[i] == 0 && last != num_list[i]){
+            if (last != num_list[i]){
                 last = num_list[i];
                 result[depth] = num_list[i];
-                check[i] = 1;
-                dfs(depth + 1, n, m, last, check, num_list, result);
-                check[i] = 0;
+                dfs(depth + 1, n, m, last, num_list, result);
             }
         }
     }
@@ -36,7 +34,6 @@ void dfs(int depth, int n, int m, int last, int *check, int *num_list, int *resu
 
 int main(){
     int n, m, last=0;
-    int *check = (int*)malloc(sizeof(int)*n);
     int *num_list = (int*)malloc(sizeof(int)*n);
     int *total_list = (int*)malloc(sizeof(int)*m);
 
@@ -45,5 +42,5 @@ int main(){
         scanf("%d", &num_list[i]);
     }
     sort(num_list, n);
-    dfs(0, n, m, last, check, num_list, total_list);
+    dfs(0, n, m, last, num_list, total_list);
 }
