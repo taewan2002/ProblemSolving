@@ -7,10 +7,11 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/<executable file>",
+            "name": "sshdebug",
+            "program": "${workspaceFolder}/output.bin",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build"
         }
     ]
 }
