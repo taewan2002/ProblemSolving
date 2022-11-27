@@ -1,6 +1,5 @@
-import os
+n = int(input())
+num = list(map(int, input().split()))
+k = int(input())
 
-while True:
-    cmd='say -v "Yuna" "너 사탄 들렸어?"'
-    os.system(cmd)
-    
+print(num.count(k))
