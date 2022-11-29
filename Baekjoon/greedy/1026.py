@@ -12,3 +12,5 @@ for i in range(n):
     list2.pop(list2.index(max(list2)))
     
 print(total)
+
+# Compare this snippet from Baekjoon/sorting/23900.py:
