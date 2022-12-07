@@ -21,3 +21,5 @@ if gcd(a, b) != 1:
     print(f"{a-b} -1")
 else:
     print(f"{a-b} {x}")
+
+# Path: Gachon/algorithm/RSA_problem/Extended_gcd.py
