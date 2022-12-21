@@ -1,40 +1,31 @@
 {
-    "version": "0.2.0",
     "configurations": [
         {
-            "type": "java",
-            "name": "Launch UdpClient",
-            "request": "launch",
-            "mainClass": "UdpClient",
-            "projectName": "ProblemSolving_f82650dd"
-        },
-        {
-            "type": "java",
-            "name": "Launch UdpServer",
-            "request": "launch",
-            "mainClass": "UdpServer",
-            "projectName": "ProblemSolving_f82650dd"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "sshdebug",
-            "program": "${workspaceFolder}/output.bin",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "Build"
-        },
-        {
-            "name": "(lldb) Launch",
+            "name": "C/C++: g++ build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "enter program name, for example ${workspaceFolder}/a.out",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb"
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: g++ build active file"
+        },
+        {
+            "name": "C/C++: clang build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: clang build active file"
         }
-    ]
+    ],
+    "version": "2.0.0"
 }
