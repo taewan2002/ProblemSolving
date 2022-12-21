@@ -1,0 +1,30 @@
+6/2021-06-04/yes/Bobby Anderson/33/McGill University/engineer
+5/2021-06-12/yes/Chunyong Park/48/University of Cambridge/student
+11/2021-07-22/no/Kwangsu Choi/48/Seoul National University/marketer
+22/2021-06-29/no/Tongbang Cho/29/Northwestern University/marketer
+7/2021-06-28/yes/Jihu Park/70/Australian National University/student
+16/2021-08-16/yes/Tongbang Kim/39/Tsinghua University/student
+21/2021-07-21/yes/Jude Smith/38/Cornell University/executive
+29/2021-06-08/yes/Bailey Houghton/31/Gachon University/engineer
+25/2021-06-09/no/Archie Hunt/60/Fudan University/student
+10/2021-06-06/yes/William Cohen/37/University of Cambridge/engineer
+24/2021-07-24/no/Stefan Wilkerson/48/University of Melbourne/executive
+4/2021-07-03/no/Jihu Cho/71/Tsinghua University/engineer
+12/2021-07-22/no/Owen Martin/66/Gachon University/engineer
+8/2021-06-04/no/Moises Barlow/57/Gachon University/engineer
+9/2021-06-16/yes/Kyungmin Kim/45/University of Sydney/marketer
+18/2021-06-14/no/Tongbang Park/32/New York University/engineer
+23/2021-06-15/yes/Seungmin Cho/71/Stanford University/professor
+14/2021-08-15/yes/Kwangsu Cho/48/Gachon University/executive
+19/2021-06-07/yes/Chunyong Kim/34/Harvard University/staff
+15/2021-07-12/no/Tongbang Choi/26/Cornell University/engineer
+27/2021-08-24/no/Konner French/42/Gachon University/professor
+26/2021-06-30/yes/Sincere Bradley/58/University of Hong Kong/staff
+17/2021-08-14/no/Chunyong Chang/75/Gachon University/student
+1/2021-08-25/yes/Jihu Choi/74/Harvard University/engineer
+3/2021-07-01/no/Chinho Park/53/Peking University/engineer
+30/2021-07-13/yes/Kyungmin Choi/44/Duke University/student
+2/2021-08-22/no/Seungmin Choi/31/Gachon University/staff
+13/2021-06-03/yes/Chinho Cho/68/Gachon University/student
+28/2021-08-27/no/Kwangsu Park/43/University of Pennsylvania/student
+20/2021-07-30/yes/Chinho Kim/52/Gachon University/engineer
