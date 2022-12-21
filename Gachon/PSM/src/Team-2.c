@@ -395,6 +395,8 @@ void p8_2(unsigned char org_check_sum) {
 }
 
 void main() {
+    // 파일경로 수정해야 돌아갈거임..
+    
     int num; // count the array
     unsigned char org_check_sum; // check the original checksum.
     struct ARRAY temp1[MAX] = { NULL };
