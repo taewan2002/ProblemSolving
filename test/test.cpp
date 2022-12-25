@@ -1,39 +1,43 @@
 #include<iostream>
 #include<algorithm>
-#include<vector>
-#include<cstdlib> // abs가 들어 있네요~
 using namespace std;
 
 int main() {
-	ios_base::sync_with_stdio(false); // c++ 만의 독립버퍼로 시간이 빨라진다.
-    cin.tie(nullptr); // cin cout가 서로 묶여있다... 그것을 풀어줌(?)111111
+	// ios_base::sync_with_stdio(false); // c++ 만의 독립버퍼로 시간이 빨라진다.
+    // cin.tie(nullptr); // cin cout가 서로 묶여있다... 그것을 풀어줌(?)111111
 
 	
-	int N, tmp;
-	cin >> N; // N을 입력받는다.
-	vector<int> arr;
-	for(int i=0; i<N; i++){
-		cin >> tmp;
-		arr.push_back(tmp);
-	}
-	// 정렬 한다 으이?
-	sort(arr.begin(), arr.end());
+	int N;
+	int arr[26];
+	char s[100001];
 
-	int lo_value, hi_value;
-	int lo=0, hi=arr.size()-1, total = 0, abs_value=2000000000; // 20억
-	while(lo<hi){
-		total = arr[lo] + arr[hi]; // 일단 두 개 더해봐
-		if(abs_value > abs(total)){
-			abs_value = abs(total);
-			lo_value = lo; // 작은 수의 인덱스 저장
-			hi_value = hi; // 큰 수의 인덱스 저장
+	cin >> N; // N을 입력받는다.
+	scanf("%s", s);
+	arr[s[0] - 'a'] += 1;
+
+	int cnt=1, ans=1, lo=0;
+	// 문자열 길이 만큼 반복한다.
+	for(int i=1; s[i] != 0; i++){
+		
+		// i번째 문자열에 대해 업데이트 한다.
+		if(arr[s[i] - 'a'] == 0){
+			cnt += 1;
 		}
-		if(total < 0){ // 작은수를 더 크게
+		arr[s[i] - 'a'] += 1;
+
+		// 업데이트 이후 종류가 N개보다 크다면 왼쪽에서 제외
+		while(cnt > N){
+			arr[s[lo] - 'a'] -= 1;
+			if(arr[s[lo] - 'a'] == 0){
+				cnt -= 1;
+			}
 			lo++;
 		}
-		else{ // 큰 수를 더 작게
-			hi--;
+
+		// 왼쪽에서부터 제거해서 N보다 작아진 시점보다 +1 한 결과값을 구함
+		if (i - lo + 1 > ans){
+			ans = i - lo + 1;
 		}
 	}
-	cout << arr[lo_value] << " " << arr[hi_value] << endl;
+	cout << ans << endl;
 }
