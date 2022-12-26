@@ -28,3 +28,4 @@ for _ in range(n):
 print(len(convex_hull(points)))
 for p in convex_hull(points):
     print(p[0], p[1])
+
