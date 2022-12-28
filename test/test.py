@@ -1,24 +1,41 @@
 import sys
 input = sys.stdin.readline
 
-def solution(MIN,MAX):
-    answer = MAX-MIN+1
-    check = [False]*(MAX-MIN+1) # MIN~MAX까지의 수를 체크할 배열
-    i=2
-    while i*i <= MAX:
-        square_number = i*i
-        # MIN이 square_number의 배수가 아니라면, MIN이 속한 square_number의 첫번째 수를 구해준다.
-        remain = 0 if MIN%square_number==0 else 1 
-        j = MIN//square_number + remain
-        while square_number*j <= MAX:
-            # 이미 체크된 수는 넘어간다.
-            if not check[square_number*j-MIN]:
-                check[square_number*j-MIN]=True
-                answer-=1
-            j+=1
-        i+=1        
-    print(answer)
-    
+def lower_bound(key):
+    global total_list
+    start = 0
+    end = len(total_list) - 1
+    while start <= end:
+        mid = (start + end) // 2
+        if total_list[mid] < key:
+            start = mid + 1
+        else:
+            end = mid - 1
+    return start
 
-a,b = map(int,input().split())
-solution(a,b)
+
+def get_max(node):
+    global total_list
+    global high
+    lb = lower_bound(node)
+    if lb > 0:
+        left = high[total_list[lb - 1]]
+    else:
+        left = 0
+    if lb < len(total_list):
+        right = high[total_list[lb]]
+    else:
+        right = 0
+    high[node] = max(left, right) + 1
+    total_list.insert(lb, node)
+
+    return high[node]
+
+
+n = int(input())
+total = 0
+total_list = []
+high = [0] * (n + 1)
+for i in range(n):
+    total += get_max(int(input()))
+print(total)
