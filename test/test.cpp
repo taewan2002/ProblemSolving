@@ -4,7 +4,8 @@
 #include<math.h>
 using namespace std;
 
-
+int t=0;
+int min_num;
 bool isPrime(int num) {
     if(num < 2) return false;
 
@@ -13,19 +14,11 @@ bool isPrime(int num) {
     for(int i = 2 ; i <= sqrt(num) ; i++) {
         if(num % i == 0) return false;
     }
-
+	if (t == 0) {
+		min_num = num;
+		t++;
+	}
     return true;
-}
-
-bool isPalindrome(string str) {
-    string front, back;
-    
-    front = str;
-    reverse(str.begin(), str.end());
-    back = str;
-
-    if(front == back) return true;
-    else return false;
 }
 
 int main() {
@@ -34,15 +27,16 @@ int main() {
 
 	int a, b;
 	cin >> a >> b;
+	int cnt = 0;
 
     for(int i = a ; i <= 10000000 ; i++) {
         if(i > b) break;
-        if(isPalindrome(to_string(i)) && isPrime(i)) {
-            cout << i << endl;
+        if(isPrime(i)) {
+            cnt += i;
         }
     }
-
-    cout << -1 << endl;
+	if(cnt != 0) cout << cnt << "\n" << min_num << endl;
+	else cout << -1 << endl;
 
     return 0;
 }
