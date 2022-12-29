@@ -4,23 +4,23 @@
 #include<math.h>
 using namespace std;
 
+// long long이 int보다 빠르다.. 이유는 모르겠다
+// long long은 64비트, int는 32비트
+
 int main() {
 	ios_base::sync_with_stdio(false); // c++ 만의 독립버퍼로 시간이 빨라진다.
     cin.tie(nullptr); // cin cout가 서로 묶여있다... 그것을 풀어줌(?)
 
-	int N;
-
+	long long N;
     cin >> N;
-	vector<int> arr;
-	for(int i=0; i<N; i++){
-		int temp;
-		cin >> temp;
-		arr.push_back(temp);
+	
+	long long total=0, num=1, sum=0;
+	while(1){
+		sum += num;
+		if(sum > N) break;
+		num++;
+		total++;
 	}
-
-	sort(arr.begin(), arr.end());
-
-	cout << arr[(N-1)/2] << endl;
-    
+	cout << total << endl;
     return 0;
 }
