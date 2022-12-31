@@ -9,8 +9,7 @@
 
 > [이진 검색 트리](/Baekjoon/tree/1539.py)
 
-> [A Star not a Tree]()
-https://www.acmicpc.net/problem/4360
+> [A Star not a Tree](/Baekjoon/gd/4360.cpp)
 
 
 
