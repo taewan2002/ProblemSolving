@@ -2,16 +2,15 @@
 
 - Solution of Platinum Abnormal Problems
 > [Building the Moat](/Baekjoon/convex_hull/6194.cpp)
-https://www.acmicpc.net/problem/6194
 
+> [Convex Hull](/Baekjoon/convex_hull/4181.py)
 
-> https://www.acmicpc.net/problem/4181
+> [블록 껍질](/Baekjoon//convex_hull/1078.py)
 
-> https://www.acmicpc.net/problem/1708
+> [이진 검색 트리](/Baekjoon/tree/1539.py)
 
-> https://www.acmicpc.net/problem/1539
-
-> https://www.acmicpc.net/problem/4360
+> [A Star not a Tree]()
+https://www.acmicpc.net/problem/4360
 
 
 
