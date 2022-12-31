@@ -1,7 +1,9 @@
 # ProblemSolving
 
 - Solution of Platinum Abnormal Problems
-> https://www.acmicpc.net/problem/6194
+> [Building the Moat](/Baekjoon/convex_hull/6194.cpp)
+https://www.acmicpc.net/problem/6194
+
 
 > https://www.acmicpc.net/problem/4181
 
