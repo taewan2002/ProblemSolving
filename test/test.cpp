@@ -7,52 +7,54 @@
 #include<map>
 using namespace std;
 
+#define INF 987654321
+
 int main() {
 	ios_base::sync_with_stdio(false); // c++ 만의 독립버퍼로 시간이 빨라진다.
     cin.tie(nullptr); // cin cout가 서로 묶여있다... 그것을 풀어줌(?)
 
-	int N;
-	cin >> N;
+	int N, M;
+	cin >> N >> M;
 
-	// 배열 동적 할당
-	int **graph = new int*[N];
-	for(int i=0; i < N; i++){
-		graph[i] = new int[N];
+	int arr[101][101];
+	// arr테이블 초기화
+	for(int i=1; i<=N; i++){
+		for(int j=1; j<=N; j++){
+			arr[i][j] = INF;
+		}
 	}
 
 	// 그래프 입력
-	for(int i=0; i<N; i++){
-		for(int j=0; j<N; j++){
-			cin >> graph[i][j];
+	int from, to, weight;
+	for(int i=0; i<M; i++){
+		cin >> from >> to >> weight;
+		if(arr[from][to] > weight){
+			arr[from][to] = weight;
 		}
 	}
 
 	// floyd-warshall
-	// i -> j 로 가는길이 없어도
-	// k를 지나갈 수 있으면 갈 수 있음.
-	for(int k=0; k<N; k++){
-		for(int i=0; i<N; i++){
-			for(int j=0; j<N; j++){
-				if(graph[i][k] && graph[k][j])
-					graph[i][j] = 1;
+	for(int i=1; i<=N; i++){ // i vertex를 거치는 경우
+		for(int j=1; j<=N; j++){ // 시작 vertex
+			for(int k=1; k<=N; k++){ // 도착 vertex
+				if(arr[j][i] != INF && arr[i][k] != INF)
+					arr[j][k] = min(arr[j][k], arr[j][i] + arr[i][k]);
 			}
 		}
 	}
 
 	// 출력
-	for(int i=0; i<N; i++){
-		for(int j=0; j<N; j++){
-			cout << graph[i][j] << " ";
+	for(int i=1; i<=N; i++){
+		for(int j=1; j<=N; j++){
+			if(i==j || arr[i][j] == INF){
+				cout << 0 << " ";
+			}
+			else{
+				cout << arr[i][j] << " ";
+			}
 		}
 		cout << endl;
 	}
-
-	// 자원 반환
-	for(int i=0; i<N; i++){
-		delete[] graph[i];
-	}
-	delete[] graph;
-
 
     return 0;
 }
