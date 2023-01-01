@@ -1,19 +1,14 @@
-n=int(input())
-for i in range(n):
-    com=int(input())
-    wears={}
-    for i in range(com):
-        a,b=input().split()
-        if b in wears:
-            wears[b].append(a)
-        else:
-            wears[b]=[a]
-    a=[]
-    for key,values in wears.items():
-        a.append(len(values)+1)
-    
-    ans=1
-    for i in a:
-        ans*=i
-    
-    print(ans-1)
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+total = {}
+for _ in range(n):
+    tmp = int(input())
+    if tmp in total:
+        total[tmp] += 1
+    else:
+        total[tmp] = 1
+
+# value는 높은 순서대로, key는 낮은 순서대로
+print(sorted(total.items(), key = lambda x : (-x[1],x[0]))[0][0])
