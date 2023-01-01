@@ -5,6 +5,8 @@
         "vector": "cpp",
         "ios": "cpp",
         "iosfwd": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "__config": "cpp",
+        "queue": "cpp"
     }
 }
