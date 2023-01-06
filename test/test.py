@@ -1,12 +1,10 @@
 import sys
 input = sys.stdin.readline
 
-N, M = map(int, input().split())
-for _ in range(N):
-    tmp = list(input()[:-1])
-    for i in range(M):
-        if tmp[i] != ".":
-            tmp[-(i+1)] = tmp[i]
-    for i in tmp:
-        print(i, end="")
-    print()
+N = int(input())
+print(sum(K*(N//K) for K in range(1, N+1)))
+# f(1) = 1
+# f(2) = 1 + 2
+# f(3) = 1 + 3
+# f(4) = 1 + 2 + 4
+# g(4) = 1*4 + 2*2 + 3 + 4
