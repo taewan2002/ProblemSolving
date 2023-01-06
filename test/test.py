@@ -1,12 +1,18 @@
 import sys
+import math
 input = sys.stdin.readline
 
-money = [25, 10, 5, 1]
-for _ in range(int(input())):
-    total = [0 for _ in range(4)]
-    
-    N = int(input())
-    for i in range(4):
-        total[i] = N // money[i]
-        N %= money[i]
-    print(*total)
+fnum = [math.factorial(i) for i in range(21)]
+# 21! 부터는 범위를 벗어난다.
+N = int(input())
+
+if N==0:
+    print("NO")
+else:
+    for i in range(20, -1, -1):
+        if N >= fnum[i]:
+            N -= fnum[i]
+    if N == 0: # N을 fnum원소로 뺏을 때 0이되면 더해서 만들 수 있음
+        print("YES")
+    else:
+        print("NO")
