@@ -1,10 +1,11 @@
 import sys
 input = sys.stdin.readline
 
+dp = [0 for _ in range(1000001)]
+for i in range(1, 1000001):
+    for j in range(i, 1000001, i):
+        dp[j] += i
+    dp[i] += dp[i-1]
 N = int(input())
-print(sum(K*(N//K) for K in range(1, N+1)))
-# f(1) = 1
-# f(2) = 1 + 2
-# f(3) = 1 + 3
-# f(4) = 1 + 2 + 4
-# g(4) = 1*4 + 2*2 + 3 + 4
+for _ in range(N):
+    print(dp[int(input())])
