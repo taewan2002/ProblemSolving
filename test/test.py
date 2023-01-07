@@ -2,14 +2,22 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-node = list(map(int, input().split()))
-cost = list(map(int, input().split()))
+for _ in range(N):
+    p = []
 
-total = cost[0] * node[0] # 첫 주유
-mcost = cost[0] # 싼 주유
-for i in range(1, N-1):
-    if mcost > cost[i]:
-        mcost = cost[i]
-    total += mcost * node[i]
+    K = int(input())
+    for _ in range(K):
+        p.append(list(map(int, input().split())))
+    
+    p.sort()
+    temp = p[0][1]
+    cnt = 1
 
-print(total)
+    for i in range(K):
+        # 처음 원소로 이미 정렬을 함
+        # = 처음 원소 순위는 밀린다
+        # 두번째 원소 순위는 밀리면 안된다
+        if temp > p[i][1]:
+            cnt +=1
+            temp = p[i][1]
+    print(cnt)
