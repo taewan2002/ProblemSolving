@@ -1,11 +1,10 @@
 import sys
 input = sys.stdin.readline
+money = [500, 100, 50, 10, 5, 1]
 
-Alist = list(map(int, input().split()))
-Blist = list(map(int, input().split()))
-Alist.sort(reverse=True)
-Blist.sort(reverse=True)
+N = 1000 - int(input())
 total = 0
-for i in range(len(Alist)):
-    total += Alist[i] * Blist[i]
+for i in money: # 620
+    total += N // i
+    N %= i
 print(total)
