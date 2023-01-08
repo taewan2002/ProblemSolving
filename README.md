@@ -11,6 +11,8 @@
 
 > [A Star not a Tree](/Baekjoon/gd/4360.cpp)
 
+> [가장 긴 증가하는 부분수열 5](/Baekjoon/binary_search/14003.py)
+
 
 
 
