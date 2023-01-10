@@ -5,7 +5,7 @@
 
 > [Convex Hull](/Baekjoon/convex_hull/4181.py)
 
-> [블록 껍질](/Baekjoon//convex_hull/1078.py)
+> [블록 껍질](/Baekjoon//convex_hull/1708.py)
 
 > [이진 검색 트리](/Baekjoon/tree/1539.py)
 
