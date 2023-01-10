@@ -1,18 +1,19 @@
 import sys
 input = sys.stdin.readline
 
+INF = 10000000
 N = int(input())
-for i in range(N):
-    K = int(input())
-    dp = []
-    for _ in range(2):
-        dp.append(list(map(int, input().split())))
-    for k in range(1, K):
-        if k == 1:
-            dp[0][k] += dp[1][k-1]
-            dp[1][k] += dp[0][k-1]
-        else:
-            dp[0][k] += max(dp[1][k-1], dp[1][k-2])
-            dp[1][k] += max(dp[0][k-1], dp[0][k-2])
-    print(max(dp[0][-1], dp[1][-1]))
+arr = [list(map(int, input().split()))for _ in range(N)]
+
+total = INF
+for k in range(3):
+    dp = [[INF, INF, INF] for _ in range(N)]
+    dp[0][k] = arr[0][k]
+    for i in range(1, N):
+        for j in range(3):
+            dp[i][j] = arr[i][j] + min(dp[i-1][(j+1)%3], dp[i-1][(j+2)%3])
+    for i in range(3):
+        if i != k: # 처음, 마지막이 같지 않아야 됨
+            total = min(total, dp[-1][i])
+print(total)
 
