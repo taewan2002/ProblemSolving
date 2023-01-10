@@ -1,20 +1,15 @@
 import sys
-import heapq
+from collections import deque
 input = sys.stdin.readline
 
-# heapq.heappop -> 작은거 순서대로 뽑아옴
+N, L = map(int, input().split())
+arr = list(map(int, input().split()))
 
-card = []
-total = 0
-N = int(input())
-for _ in range(N):
-    heapq.heappush(card, int(input()))
-    
-if len(card) == 1:
-    print(0)
-else:
-    while len(card) > 1:
-        tmp = heapq.heappop(card) + heapq.heappop(card)
-        total += tmp
-        heapq.heappush(card, tmp)
-    print(total)
+q = deque()
+for i in range(N):
+    while q and q[-1][0] > arr[i]:
+        q.pop()
+    while q and q[0][1] < i - L + 1:
+        q.popleft()
+    q.append((arr[i], i))
+    print(q[0][0], end=" ")

@@ -13,6 +13,7 @@
 
 > [가장 긴 증가하는 부분수열 5](/Baekjoon/binary_search/14003.py)
 
+> [최솟값 찾기](/Baekjoon/dataStructure/11003.py)
 
 
 
