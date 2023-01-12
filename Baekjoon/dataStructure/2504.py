@@ -33,6 +33,3 @@ for i in range(len(S)):
 if stack:
     total = 0
 print(total)
-
-
-        
