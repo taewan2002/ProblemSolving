@@ -2,13 +2,14 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-N, K = map(int, input().split())
+N = int(input())
 
-dp = [[0 for _ in range(K+1)]for _ in range(N+1)]
-dp[0][0] = 1
-
-for k in range(N+1):
-    for i in range(1, K+1):
-        dp[k][i] = dp[k-1][i] + dp[k][i-1]
-
-print(dp[N][K] % 1000000000)
+# a + b > c
+cnt = 0
+for a in range(1, N):
+    for b in range(a, N):
+        c = N - a - b
+        if b > c: break # b가 가장 긴변일 때 만 확인함
+        if a + b > c: 
+            cnt += 1
+print(cnt)
