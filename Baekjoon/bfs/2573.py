@@ -51,4 +51,3 @@ while True:
         print(0)
         break
     year += 1
-
