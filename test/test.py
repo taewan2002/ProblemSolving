@@ -6,21 +6,28 @@ import itertools
 import math
 input = sys.stdin.readline
 
-N, K = map(int, input().split())
+N, M = map(int, input().split())
 
-gpa = [[0,0]]
-for _ in range(K):
-    gpa.append(list(map(int, input().split())))
+node = [i for i in range(N+1)]
 
-dp = [[0 for _ in range(N+1)] for _ in range(K+1)]
-for i in range(1, K+1):
-    for j in range(1, N+1):
-        t = gpa[i][1] # 공부시간
-        g = gpa[i][0] # 중요도
+def get_parent(x):
+    if node[x] == x: # 자기 스스로가 될때 까지 -> 연결의 끝까지 검색
+        return x
+    node[x] = get_parent(node[x]) # 재귀로 연결된 끝까지 감
+    return node[x]
 
-        if j < t:
-            dp[i][j] = dp[i-1][j]
-        else:
-            dp[i][j] = max(dp[i-1][j], dp[i-1][j-t] + g)
+def union_parant(a, b):
+    a = get_parent(a)
+    b = get_parent(b)
 
-print(dp[K][N])
+    if a < b: # 작은 수를 부모로
+        node[b] = a
+    else:
+        node[a] = b
+
+for _ in range(M):
+    c, a, b = map(int, input().split())
+    if c == 0:
+        union_parant(a, b)
+    else:
+        print("YES" if get_parent(a)==get_parent(b) else "NO")
