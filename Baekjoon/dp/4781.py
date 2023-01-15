@@ -19,5 +19,3 @@ while True:
         for i in range(p, m+1):
             dp[i] = max(dp[i], dp[i-p] + c)
     print(dp[m]) 
-
-    
