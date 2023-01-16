@@ -23,15 +23,13 @@ def convex_hull(points):
         upper.append(p)
     return lower[:-1] + upper[:-1] # 시작점과 끝점이 중복되므로 제거
 
-def getDist(p1,p2):
-    return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
-
-N = int(input())
-for _ in range(N):
-    k = int(input())
-    points = [list(map(int, input().split())) for _ in range(k)]
-    c = convex_hull(points) # 볼록껍질을 이루는 점들
-    total = 0
-    for i in range(len(c)):
-        total += getDist(c[i-1], c[i]) # 볼록 껍질을 이루는 점들의 길이를 다 더함
-    print(f"{total:.2f}")
+# N = int(input())
+# for _ in range(N):
+k = int(input())
+points = [list(map(int, input().split())) for _ in range(k)]
+c = convex_hull(points) # 볼록껍질을 이루는 점들
+total = 0
+for i in range(len(c)):
+    total += (c[i-1][0]*c[i][1]) - (c[i][0]*c[i-1][1]) # 다각형의 넓이 구하기
+total = abs(total)//100 # 2로 나누고 50으로 나눠야 하기에 100으로 나눔
+print(total)
