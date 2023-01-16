@@ -17,6 +17,8 @@
 
 > [행성 터널](/Baekjoon/graph/2887.py)
 
+> [맹독 방벽](/Baekjoon/convex_hull/7420.py)
 
+> [Wall construction](/Baekjoon/convex_hull/10903.py)
 
 
