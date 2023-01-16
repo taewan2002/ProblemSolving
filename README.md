@@ -22,3 +22,5 @@
 > [Wall construction](/Baekjoon/convex_hull/10903.py)
 
 > [Maple Roundup](/Baekjoon/convex_hull/6962.py)
+
+> [Cows](/Baekjoon/convex_hull/6850.py)
