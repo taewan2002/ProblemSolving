@@ -3,26 +3,23 @@ from collections import deque
 import heapq
 import itertools
 import math
-# https://ku-hug.tistory.com/149
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-N = int(input())
-star = [[' ' for _ in range(N*2)] for _ in range(N)]
+n = int(input())
+dp = [[0, []] for _ in range(n + 1)]
+dp[1][0] = 0
+dp[1][1] = [1]
 
-def go(x, y, n):
-    if n <= 3:
-        for i in range(3):
-            for j in range(i+1):
-                star[x+i][y+j] = star[x+i][y-j] = '*'
-        star[x+1][y] = ' '
-        return
-    m = n // 2
-    go(x, y, m) # 0 5 6
-    go(x+m, y-m, m) # 6 -1 6 
-    go(x+m, y+m, m) # 6 11 6
+for i in range(2, n+1):
+    dp[i][0] = dp[i-1][0] + 1 # 1더하기
+    dp[i][1] = dp[i-1][1] + [i] # 배열에 숫자 추가하기
+    if i % 3 == 0 and dp[i//3][0] + 1 < dp[i-1][0]: # 길이를 더 짧게 만들 수 있다면
+        dp[i][0] = dp[i//3][0] + 1
+        dp[i][1] = dp[i//3][1] + [i]
+    if i % 2 == 0 and dp[i // 2][0] + 1 < dp[i][0]:
+        dp[i][0] = dp[i // 2][0] + 1
+        dp[i][1] = dp[i // 2][1] + [i]
 
-go(0, N-1, N)
-
-for i in range(N):
-    print("".join(star[i]))
+print(dp[n][0])
+print(*reversed(dp[n][1]))
