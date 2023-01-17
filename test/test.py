@@ -5,38 +5,38 @@ import itertools
 import math
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
+p = 1000000007
 
+def factorial(N):
+    n=1
+    for i in range(2, N+1):
+        n = (n*i) % p # 1 2 6 24 ...
+    return n
 
-def mul(n, matrix1, matrix2):
-    t = [[0 for _ in range(N)]for _ in range(N)]
-
-    for n in range(N):
-        for k in range(N):
-            for m in range(N):
-                t[n][k] += matrix1[n][m]*matrix2[m][k]
-            t[n][k] %= 1000
-    return t
-
-def devide(n, b, matrix):
-    if b == 1:
-        for i in range(len(matrix)):
-            for j in range(len(matrix)):
-                matrix[i][j] %= 1000
-        return matrix
+def devide(n, k):
+    if k == 0:
+        return 1
+    elif k == 1:
+        return n
     else:
-        tmp = devide(n, b//2, matrix) # 제곱수를 반 나눈 걸로 다시 실행
+        tmp = devide(n, k//2) # 제곱수를 반 나눈 걸로 다시 실행
         # 10 -> 5 -> 2, 2의 배수로 제곱 리턴하고(n^2) -> n^5 -> n^10 완성
-        if b%2 == 0: # 2의 배수면
-            return mul(n, tmp, tmp) # 제곱을 리턴함
+        if k%2: # 2의 배수가 아니면
+            return tmp * tmp * n % p
         else:
-            return mul(n, mul(n, tmp, tmp), matrix) # 제곱한거에 제곱을 리턴함
+            return tmp * tmp % p
 
 
-N, B = map(int, input().split())
-A = []
-for _ in range(N):
-    A.append(list(map(int, input().split())))
+N, K = map(int, input().split())
+# nCr = N! / (N-K)! * K!
 
-total = devide(N, B, A)
-for i in total:
-    print(*i)
+# 페르마의 소정리
+# p가 소수, a가 정수일 때
+# a^p = a(mod p)
+# a^(p-2) = 1/a(mod p)
+# a^-1은 a^(p-2)와 합동
+
+top = factorial(N)
+bot = factorial(N-K) * factorial(K) % p
+
+print(top * devide(bot, p-2) % p)
