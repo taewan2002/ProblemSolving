@@ -3,22 +3,26 @@ from collections import deque
 import heapq
 import itertools
 import math
+# https://ku-hug.tistory.com/149
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-def star(n):
-    if n == 3:
-        return ["***", "* *", "***"]
+N = int(input())
+star = [[' ' for _ in range(N*2)] for _ in range(N)]
 
-    arr = star(n//3) # 9
-    stars = []
-    for i in arr:
-        stars.append(i*3)
-    for i in arr:
-        stars.append(i+" "*(n//3)+i)
-    for i in arr:
-        stars.append(i*3)
-    return stars  
+def go(x, y, n):
+    if n <= 3:
+        for i in range(3):
+            for j in range(i+1):
+                star[x+i][y+j] = star[x+i][y-j] = '*'
+        star[x+1][y] = ' '
+        return
+    m = n // 2
+    go(x, y, m) # 0 5 6
+    go(x+m, y-m, m) # 6 -1 6 
+    go(x+m, y+m, m) # 6 11 6
 
-n = int(input())
-print('\n'.join(star(n)))
+go(0, N-1, N)
+
+for i in range(N):
+    print("".join(star[i]))
