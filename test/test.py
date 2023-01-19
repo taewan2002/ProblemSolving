@@ -3,32 +3,40 @@ from collections import deque
 import heapq
 import itertools
 import math
-sys.setrecursionlimit(10**6)
+# sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-dx = [1, 1, -1, -1, 1, -1, 0, 0] # 대각선도 접근 가능하게 함
-dy = [0, 1, 0, 1, -1, -1, 1, -1]
+N = int(input())
+table = [list(input())for _ in range(N)]
+maxCnt = 0
 
-def dfs(x, y):
-  field[x][y] = 0
-  for i in range(8):
-    nx = x + dx[i]
-    ny = y + dy[i]
-    if 0 <= nx < h and 0 <= ny < w and field[nx][ny] == 1:
-      dfs(nx, ny)
+def check():
+    global maxCnt
+    for i in range(N):
+        cnt = 1
+        for j in range(1, N):
+            if table[i][j] == table[i][j-1]:
+                cnt += 1
+                maxCnt = max(cnt, maxCnt)
+            else:
+                cnt = 1
+        cnt = 1
+        for j in range(1, N):
+            if table[j][i] == table[j-1][i]:
+                cnt += 1
+                maxCnt = max(cnt, maxCnt)
+            else:
+                cnt = 1
+                
+for i in range(N):
+    for j in range(N):
+        if j + 1 < N:
+            table[i][j], table[i][j+1] = table[i][j+1], table[i][j]
+            check()
+            table[i][j], table[i][j+1] = table[i][j+1], table[i][j]
+        if i + 1 < N:
+            table[i][j], table[i+1][j] = table[i+1][j], table[i][j]
+            check()
+            table[i][j], table[i+1][j] = table[i+1][j], table[i][j]
 
-while True:
-  w, h = map(int, input().split())
-  if w == 0 and h == 0:
-    break
-  field = []
-  count = 0
-  for _ in range(h):
-    field.append(list(map(int, input().split())))
-  for i in range(h):
-    for j in range(w):
-      if field[i][j] == 1: # 섬이라면
-        dfs(i, j) # dfs탐색 시작
-        count += 1 # 갯수 추가
-  
-  print(count)
+print(maxCnt)
