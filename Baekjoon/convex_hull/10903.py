@@ -32,5 +32,5 @@ c = convex_hull(points) # 볼록껍질을 이루는 점들
 total = 0
 for i in range(len(c)):
     total += getDist(c[i-1], c[i]) # 볼록 껍질을 이루는 점들의 길이를 다 더함
-total += math.pi*L*2 # 4면을 더하고 1/4씩 각 모퉁이를 더하는거랑 같음
+total += math.pi*L*2 # 만약 N이 4면, 4면을 더하고 1/4씩 각 모퉁이를 더하는거랑 같음
 print(f"{total:.12f}")
