@@ -5,6 +5,7 @@ import itertools
 import math
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
+# https://www.acmicpc.net/problem/4963
 
 dx = [1, 1, -1, -1, 1, -1, 0, 0] # 대각선도 접근 가능하게 함
 dy = [0, 1, 0, 1, -1, -1, 1, -1]
