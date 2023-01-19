@@ -6,33 +6,35 @@ import math
 import bisect
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
-# https://www.crocus.co.kr/1075
 
-def manacher(s):
-    N = len(s)
-    pal = [0 for _ in range(N)]
-    center = 0 # 중심점
-    long = 0 # 펠린드롬 값
-    total = 0 # 총 펠린드롬 갯수
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
 
-    for cur in range(N): # cur을 중심으로 펠린드롬 만들기
-        if s[cur] != "#": # "#" 이 아니면 스스로도 펠린드롬이다.
-            total += 1
-        if long < cur: 
-            pal[cur] = 0
-        else:
-            pal[cur] = min(pal[2*center - cur], long - cur)
-            total += pal[cur] // 2 # aabcc -> aabcc, abc 펠린드롬이다.
+def dfs(px, py, d, s):
+    global total
+    if d == K:
+        total = max(total, s)
+        return
+    for x in range(px, N):
+        for y in range(py if x==px else 0, M):
+            if v[x][y]:
+                continue
 
-        while cur - pal[cur] - 1 >= 0 and cur + pal[cur] + 1 < N and \
-            s[cur-pal[cur]-1] == s[cur+pal[cur]+1]: # 앞 뒤 문자가 같으면
-            pal[cur] += 1 # pal값 + 1
-            if s[cur + pal[cur]] != "#":
-                total += 1
+            for i in range(4):
+                nx = x + dx[i]
+                ny = y + dy[i]
+                if 0 <= nx < N and 0 <= ny < M and v[nx][ny]:
+                    break
+            else:
+                v[x][y] = True
+                dfs(x, y, d+1, s+arr[x][y])
+                v[x][y] = False
 
-        if long < cur + pal[cur]:
-            long = cur + pal[cur]
-            center = cur
-    return total
+N, M, K = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+v = [[False for _ in range(M)]for _ in range(N)]
 
-print(manacher('#' + '#'.join(input()[:-1]) +'#')) # abc -> #a#b#c#
+q = []
+total = -1000000
+dfs(0, 0, 0, 0)
+print(total)
