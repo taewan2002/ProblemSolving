@@ -3,40 +3,36 @@ from collections import deque
 import heapq
 import itertools
 import math
-# sys.setrecursionlimit(10**6)
+import bisect
+sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-N = int(input())
-table = [list(input())for _ in range(N)]
-maxCnt = 0
+def get_max(node):
+    global total_list
+    global cnt
+    lb = bisect.bisect_left(total_list, node)
+    if lb > 0:
+        left = high[total_list[lb - 1]]
+    else:
+        left = 0
+    if lb < len(total_list):
+        right = high[total_list[lb]]
+    else:
+        right = 0
+    high[node] = max(left, right) + 1
+    cnt +=  max(left, right) + 1
+    total_list.insert(lb, node)
 
-def check():
-    global maxCnt
-    for i in range(N):
-        cnt = 1
-        for j in range(1, N):
-            if table[i][j] == table[i][j-1]:
-                cnt += 1
-                maxCnt = max(cnt, maxCnt)
-            else:
-                cnt = 1
-        cnt = 1
-        for j in range(1, N):
-            if table[j][i] == table[j-1][i]:
-                cnt += 1
-                maxCnt = max(cnt, maxCnt)
-            else:
-                cnt = 1
-                
-for i in range(N):
-    for j in range(N):
-        if j + 1 < N:
-            table[i][j], table[i][j+1] = table[i][j+1], table[i][j]
-            check()
-            table[i][j], table[i][j+1] = table[i][j+1], table[i][j]
-        if i + 1 < N:
-            table[i][j], table[i+1][j] = table[i+1][j], table[i][j]
-            check()
-            table[i][j], table[i+1][j] = table[i+1][j], table[i][j]
+    return high[node]
 
-print(maxCnt)
+n = int(input())
+total = 0
+total_list = []
+cnt = 0
+high = [0] * (n + 1)
+tmp = int(input())
+total_list.append(tmp)
+print(cnt)
+for i in range(1, n):
+    total += get_max(int(input()))
+    print(cnt)
