@@ -1,44 +1,37 @@
 import sys
 # from collections import deque
-# import heapq
+import heapq
 # import itertools
 # import math
 # import bisect
 # sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
+INF = sys.maxsize
 
-N, M, R = map(int, input().split())
-table = [list(map(int, input().split())) for _ in range(N)]
-cycle = (N-1)*2 + (M-1) *2 # 둘레 만큼 회전하면 제자리
+def dijkstra(start):
+    heapq.heappush(heap, [0, start])
+    d[start][0] = 0
+    while heap:
+        cost, cur = heapq.heappop(heap)
+        for i, c in w[cur]:
+            W = cost + c
+            if W < d[i][K-1]:
+                d[i][K-1] = W
+                d[i].sort()
+                heapq.heappush(heap,[W,i])
 
-for i in range(min(N,M)//2):
-    for _ in range(R%(cycle-8*i)): # 한칸 안으로 들어갈 때 마다 cycle이 8씩 감소함
-        xshift, yshift = i, i
-        shiftValue = table[xshift][yshift]
+N, M, K = map(int, input().split())
+w = [[] for _ in range(N+1)]
+d = [[INF for _ in range(K)]for _ in range(N+1)]
+heap = []
+for _ in range(M):
+    a, b, c = map(int, input().split())
+    w[a].append([b, c])
 
-        for j in range(i+1, N-i): # 좌
-            xshift = j
-            pValue = table[xshift][yshift] # 이전데이터
-            table[xshift][yshift] = shiftValue
-            shiftValue = pValue
-        
-        for j in range(i+1, M-i): # 하
-            yshift = j
-            pValue = table[xshift][yshift] # 이전데이터
-            table[xshift][yshift] = shiftValue
-            shiftValue = pValue
-        
-        for j in range(i+1, N-i): # 우
-            xshift = N - j - 1
-            pValue = table[xshift][yshift] # 이전데이터
-            table[xshift][yshift] = shiftValue
-            shiftValue = pValue
-        
-        for j in range(i+1, M-i): # 상
-            yshift = M - j - 1
-            pValue = table[xshift][yshift] # 이전데이터
-            table[xshift][yshift] = shiftValue
-            shiftValue = pValue
+dijkstra(1)
 
-for i in table:
-    print(*i)
+for i in range(1, N+1):
+    if d[i][K-1] == INF: # 길이 연결되지 않음
+        print(-1)
+    else:
+        print(d[i][K-1])
