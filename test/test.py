@@ -9,9 +9,11 @@ input = sys.stdin.readline
 INF = sys.maxsize
 
 N = int(input())
-arr = [int(input()) for _ in range(N)]
-sumList = [arr[0]]
+dp = [0 for _ in range(31)]
+dp[2] = 3
+for i in range(4, N+1, 2):
+    dp[i] = dp[i-2] * 3 + sum(dp[:i-2]) * 2 + 2
+print(dp[N])
+# 3 * 2 ->  3
+# 3 * 4 -> 9 + 2
 
-for i in range(len(arr)-1):
-    sumList.append(max(sumList[i] + arr[i+1], arr[i+1]))
-print(max(sumList))
