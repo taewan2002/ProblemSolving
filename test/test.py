@@ -9,7 +9,7 @@ input = sys.stdin.readline
 INF = sys.maxsize
 
 N = int(input())
-arr = list(map(int, input().split()))
+arr = [int(input()) for _ in range(N)]
 sumList = [arr[0]]
 
 for i in range(len(arr)-1):
