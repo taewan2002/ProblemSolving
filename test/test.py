@@ -22,15 +22,15 @@ def dijkstra(start):
                 D[v] = cost
                 heapq.heappush(q, [cost, v])
 
-N = int(input())
-M = int(input())
+N, M = map(int, input().split())
+s = int(input())
 G = [[]for _ in range(N+1)]
 D = [INF for _ in range(N+1)]
 for _ in range(M):
     a, b, c = map(int, input().split())
     G[a].append([b, c])
 
-s, e = map(int, input().split())
-
 dijkstra(s)
-print(D[e])
+
+for i in range(1, N+1):
+    print("INF" if D[i] == INF else D[i])
