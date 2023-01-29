@@ -1,19 +1,33 @@
 #include <stdio.h>
 
 int main(){
-    
-    int n;
-    int cnt=0;
-    for(int i=1; i<=n; i++){
-        if(n%i == 0){
-            cnt++;
+    int arr[5][5];
+    int arr1[5][5];
+
+    int n = 1;
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            arr[i][j] = n;
+            n++;
         }
     }
-    if(cnt == 2){
-        printf("소수입니다\n");
+
+
+    // arr -> arr1 뒤집어서 
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            arr[i][j] = n;
+            n++;
+        }
     }
-    else{
-        printf("소수가 아닙니다\n");
+
+
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            printf("%d ", arr1[i][j]);
+        }
+        printf("\n");
     }
+
     return 0;
 }         

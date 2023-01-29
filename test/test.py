@@ -2,40 +2,26 @@ import sys
 from collections import deque
 import heapq
 # import itertools
-# import math
-# import bisect
+import math
+# mport bisect
 sys.setrecursionlimit(10**9)
 input = sys.stdin.readline
 INF = sys.maxsize
 
-def dijkstra(s):
-    q = []
-    cnt = 0
-    D[s][cnt] = 0
-    heapq.heappush(q, [0, s, cnt])
+def f(x, y, w):
+    h1 = math.sqrt(math.pow(x, 2)-math.pow(w, 2))
+    h2 = math.sqrt(math.pow(y, 2)-math.pow(w, 2))
+    c = h1*h2/(h1+h2)
+    return c
 
-    while q:
-        cW, now, cnt = heapq.heappop(q)
-        if D[now][cnt] < cW:
-            continue
-        for next, w in G[now]:
-            next_W = w + cW
-            if D[next][cnt] > next_W:
-                D[next][cnt] = next_W
-                heapq.heappush(q, [next_W, next, cnt])
-            
-            # 도로 포장 횟수가 남았고, 더 작은 가중치를 넣어줌
-            if cnt < K and D[next][cnt+1] > cW:
-                D[next][cnt+1] = cW
-                heapq.heappush(q, [cW, next, cnt+1])
-
-N, M, K = map(int, input().split())
-G = [[] for _ in range(N+1)]
-D = [[INF for _ in range(K+1)] for _ in range(N+1)] # 도로 포장 갯수 확인
-for _ in range(M):
-    a, b, c = map(int, input().split())
-    G[a].append([b, c])
-    G[b].append([a, c])
-
-dijkstra(1)
-print(min(D[N]))
+x, y, c = map(float, input().split())
+s, e = 0, min(x,y)
+total = 0
+while e-s > 0.000001:
+    mid = (s+e)/2
+    if f(x, y, mid) >= c:
+        total = mid
+        s = mid
+    else:
+        e = mid
+print(f"{total:.3f}")
