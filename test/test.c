@@ -1,33 +1,22 @@
 #include <stdio.h>
+#include <string.h>
 
-int main(){
-    int arr[5][5];
-    int arr1[5][5];
-
-    int n = 1;
-    for(int i=0; i<5; i++){
-        for(int j=0; j<5; j++){
-            arr[i][j] = n;
-            n++;
-        }
+int f(n, start){
+    if (n == start){
+        return 0;
     }
-
-
-    // arr -> arr1 뒤집어서 
-    for(int i=0; i<5; i++){
-        for(int j=0; j<5; j++){
-            arr[i][j] = n;
-            n++;
-        }
-    }
-
-
-    for(int i=0; i<5; i++){
-        for(int j=0; j<5; j++){
-            printf("%d ", arr1[i][j]);
+    else{
+        for(int i=0; i<start+1; i++){
+            printf("*");
         }
         printf("\n");
+        return f(n, start+1);
     }
+}
 
+int main(){
+    int n;
+    scanf("%d", &n);
+    f(n, 0);
     return 0;
 }         
