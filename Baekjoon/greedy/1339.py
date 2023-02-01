@@ -8,30 +8,35 @@ sys.setrecursionlimit(10**9)
 input = sys.stdin.readline
 INF = sys.maxsize
 
-N = int(input())
+def bt(cnt, idx):
 
-A = []
-A_dict = {}
-numList = []
+    # 암호를 만들었을 때
+    if cnt == L:
+        # 모음, 자음 체크
+        vo, co = 0, 0
 
-for _ in range(N):
-    A.append(input().rstrip())
+        for i in range(L):
+            if total[i] in consonant:
+                vo += 1
+            else:
+                co += 1
 
-for i in range(N):
-    for j in range(len(A[i])):
-        if A[i][j] in A_dict:
-            A_dict[A[i][j]] += 10**(len(A[i])-j-1)
-        else:
-            A_dict[A[i][j]] = 10**(len(A[i])-j-1)
+        if vo >= 1 and co >= 2:
+            print("".join(total))
+        return
+    
+    # 반복문을 통해 암호를 만든다
+    for i in range(idx, C):
+        total.append(W[i])
+        bt(cnt+1, i+1)
+        total.pop()
 
-for i in A_dict.values():
-    numList.append(i)
 
-numList.sort(reverse=True)
 
-total = 0
-p = 9
-for i in numList:
-    total += p * i
-    p -= 1
-print(total)
+
+L, C = map(int, input().split())
+W = sorted(list(input().split()))
+# print(W)
+consonant = ["a", "e", "i", "o", "u"]
+total = []
+bt(0,0)
